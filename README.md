@@ -1,2 +1,48 @@
-# Superstore-Profit-Leakage-Analysis
-Analisis data Super Store untuk mendiagnosis *growth trap* dan kebocoran profit pada sub-kategori Machines. Proyek ini mengungkap dampak diskon agresif (40-70%) yang menggerus margin bisnis (studi kasus: Ohio) serta memberikan solusi data-driven untuk optimasi pricing dan discount capping.
+# Super Store Profitability Analysis: Unmasking the Machines Sub-Category Growth Trap 🛒📉
+
+## 📌 Project Overview
+Proyek ini bertujuan untuk mendiagnosis fenomena **growth trap** pada Super Store, di mana peningkatan volume penjualan tidak berbanding lurus dengan keuntungan[cite: 1]. Analisis difokuskan secara mendalam pada sub-kategori **Machines** yang menjadi titik kebocoran profit (*profit leakage*) terbesar perusahaan akibat strategi pemberian diskon yang agresif dan tidak tepat sasaran[cite: 1].
+
+---
+
+## ⚠️ Problem Statement
+Berdasarkan riset dari *McKinsey & Company*, kesalahan dalam penentuan harga dan pemberian diskon yang tidak tepat sasaran dapat menurunkan profitabilitas perusahaan hingga 20-30%, meskipun angka penjualan terlihat meningkat[cite: 1]. Di tengah pasar yang kompetitif, Super Store mengalami penurunan margin keuntungan yang signifikan akibat penerapan diskon masif tanpa dasar struktur profitabilitas yang tepat[cite: 1].
+
+---
+
+## 🛠️ Tech Stack & Tools
+* **Language:** Python[cite: 1]
+* **Libraries:** Pandas (Data Preprocessing & Feature Engineering)[cite: 1]
+* **Environment:** Jupyter Notebook via Visual Studio Code[cite: 1]
+* **Visualization:** Tableau / Power BI Desktop Dashboard[cite: 1]
+
+---
+
+## 💡 Key Insights (Machines Sub-Category)
+
+### 1. Paradoks Penjualan Tinggi vs Profit Rendah
+* Sub-kategori **Machines** mencatatkan total penjualan (*Sales*) yang kuat sebesar **$189.24K** dari 112 order[cite: 1].
+* Volume ini jauh melampaui sub-kategori *Copiers* ($149.53K dengan 68 order)[cite: 1].
+* Namun, profit bersih *Machines* hancur di angka **$3.38K**, sementara *Copiers* berhasil meraup profit tertinggi sebesar $55.62K[cite: 1].
+
+### 2. Kebocoran Transaksi yang Masif
+* Ditemukan bahwa **47,34% dari total transaksi** pada sub-kategori *Machines* berujung mengalami kerugian[cite: 1].
+* Akumulasi nilai kerugian (*Total Loss*) dari transaksi minus tersebut mencapai **$30,118.67**[cite: 1].
+
+### 3. Erosi Margin Akibat Diskon Ekstrem (Korelasi Negatif)
+* Hasil analisis pola hubungan menunjukkan bahwa peningkatan persentase diskon berkorelasi langsung dengan penurunan tajam *profit margin*[cite: 1].
+* Mayoritas kerugian didorong oleh pemberian diskon agresif di rentang **40% hingga 70%**[cite: 1].
+* **Studi Kasus:** Produk *Cubify CubeX 3D Printer* di *State* Ohio yang diberi diskon 70% memicu margin kerugian hingga **-147%** atau setara dengan minus **$9,239.97** hanya dari satu transaksi[cite: 1].
+
+### 4. Red Flag Geografis: State Ohio
+* Wilayah **Ohio** menjadi episentrum kerugian bagi sub-kategori *Machines*[cite: 1].
+* Terdapat 8 pelanggan di Ohio yang seluruh transaksinya merugi dengan total *loss* mencapai **-$11,770.94** dan rata-rata *profit margin* **-102.50%**[cite: 1].
+* Padahal, Ohio masuk dalam *Top 5 AOV (Average Order Value)* tertinggi sebesar $1,12K[cite: 1].
+
+---
+
+## 🚀 Actionable Recommendations
+
+1. **Penerapan Batas Maksimal Diskon (*Discount Capping*):** Mengunci sistem penjualan agar diskon untuk sub-kategori *Machines* tidak melebihi angka 20% dan menghentikan total promo diskon di atas 40%[cite: 1].
+2. **Audit Khusus untuk State Ohio:** Mengevaluasi kebijakan *pricing* atau kontrak dengan pelanggan besar di Ohio[cite: 1]. Mengubah strategi promo dari "potongan harga langsung" menjadi penawaran nilai tambah (*value-added*) seperti perpanjangan garansi atau paket perawatan *hardware*[cite: 1].
+3. **Restrukturisasi Katalog Produk Sensitif:** Melakukan peninjauan kembali terhadap produk dengan sensitivitas diskon tinggi (seperti *Cubify CubeX*, *Cisco*, *Epson*)[cite: 1]. Jika biaya modal (*unit cost*) terlalu tinggi, pertimbangkan untuk membatasi kuota pemesanan produk tersebut[cite: 1].
