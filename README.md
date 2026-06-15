@@ -23,7 +23,7 @@ Berdasarkan riset dari *McKinsey & Company*, kesalahan dalam penentuan harga dan
 * **Language:** Python
 * **Libraries:** Pandas (Data Preprocessing & Feature Engineering)
 * **Environment:** Jupyter Notebook via Visual Studio Code
-* **Visualization:** Tableau / Power BI Desktop Dashboard
+* **Visualization:** Tableau Dashboard
 
 ---
 
