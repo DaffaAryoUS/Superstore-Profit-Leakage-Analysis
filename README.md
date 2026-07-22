@@ -1,57 +1,162 @@
-# Overcoming Profit Leakage from Aggressive Discounting Strategy 🛒📉
+# 📊 Overcoming Profit Leakage from Aggressive Discounting Strategy
 
 ## 📌 Project Overview
-Proyek ini bertujuan untuk mendiagnosis fenomena **growth trap** pada Super Store, di mana peningkatan volume penjualan tidak berbanding lurus dengan keuntungan. Analisis difokuskan secara mendalam pada sub-kategori **Machines** yang menjadi titik kebocoran profit (*profit leakage*) terbesar perusahaan akibat strategi pemberian diskon yang agresif dan tidak tepat sasaran.
+This project analyzes retail transaction data from the Superstore dataset to identify **profit leakage caused by aggressive discount strategies**.
+
+The analysis focuses on uncovering cases where **high sales do not translate into high profit**, evaluating the relationship between **discount and profit margin**, and identifying **regions and product categories contributing to losses**.
+
+The goal is to provide actionable insights to improve pricing strategies and prevent margin erosion.
 
 ---
 
-## ⚠️ Problem Statement
-Berdasarkan riset dari *McKinsey & Company*, kesalahan dalam penentuan harga dan pemberian diskon yang tidak tepat sasaran dapat menurunkan profitabilitas perusahaan hingga 20-30%, meskipun angka penjualan terlihat meningkat. Di tengah pasar yang kompetitif, Super Store mengalami penurunan margin keuntungan yang signifikan akibat penerapan diskon masif tanpa dasar struktur profitabilitas yang tepat.
+## 🎯 Problem Statement
+In a highly competitive market, companies often fall into a **growth trap**—focusing on increasing revenue while neglecting profitability.
+
+According to McKinsey, poor pricing and uncontrolled discount strategies can reduce profitability by **20–30%**, even when sales are increasing.
+
+This project aims to evaluate whether discount strategies are negatively impacting profit performance in the Superstore dataset.
 
 ---
 
-## 📂 About Data
-* **Data File:** Sample-Superstore
-* **Format File:** Comma-Separated Values (CSV)
-* **Baris:** 9,994
-* **Kolom:** 21
-* **Tahun Publikasi (Last Update):** 2022
-* **Sumber:** [kaggle](https://www.kaggle.com/datasets/vivek468/superstore-dataset-final/data)
-
----
-## 🛠️ Tech Stack & Tools
-* **Language:** Python
-* **Libraries:** Pandas (Data Preprocessing & Feature Engineering)
-* **Environment:** Jupyter Notebook via Visual Studio Code
-* **Visualization:** Tableau Dashboard
+## 🛠️ Tools & Technologies
+- Python  
+- Pandas  
+- Jupyter Notebook (VS Code)  
 
 ---
 
-## 💡 Key Insights (Machines Sub-Category)
-
-### 1. Paradoks Penjualan Tinggi vs Profit Rendah
-* Sub-kategori **Machines** mencatatkan total penjualan (*Sales*) yang kuat sebesar **$189.24K** dari 112 order.
-* Volume ini jauh melampaui sub-kategori *Copiers* ($149.53K dengan 68 order).
-* Namun, profit bersih *Machines* hancur di angka **$3.38K**, sementara *Copiers* berhasil meraup profit tertinggi sebesar $55.62K.
-
-### 2. Kebocoran Transaksi yang Masif
-* Ditemukan bahwa **47,34% dari total transaksi** pada sub-kategori *Machines* berujung mengalami kerugian.
-* Akumulasi nilai kerugian (*Total Loss*) dari transaksi minus tersebut mencapai **$30,118.67**.
-
-### 3. Erosi Margin Akibat Diskon Ekstrem (Korelasi Negatif)
-* Hasil analisis pola hubungan menunjukkan bahwa peningkatan persentase diskon berkorelasi langsung dengan penurunan tajam *profit margin*.
-* Mayoritas kerugian didorong oleh pemberian diskon agresif di rentang **40% hingga 70%**.
-* **Studi Kasus:** Produk *Cubify CubeX 3D Printer* di *State* Ohio yang diberi diskon 70% memicu margin kerugian hingga **-147%** atau setara dengan minus **$9,239.97** hanya dari satu transaksi.
-
-### 4. Red Flag Geografis: State Ohio
-* Wilayah **Ohio** menjadi episentrum kerugian bagi sub-kategori *Machines*.
-* Terdapat 8 pelanggan di Ohio yang seluruh transaksinya merugi dengan total *loss* mencapai **-$11,770.94** dan rata-rata *profit margin* **-102.50%**.
-* Padahal, Ohio masuk dalam *Top 5 AOV (Average Order Value)* tertinggi sebesar $1,12K.
+## ❓ Business Questions
+- Are there cases where **high sales generate low profit**?  
+- How does **discount impact profit margin**?  
+- Which **regions or segments contribute most to losses**?  
 
 ---
 
-## 🚀 Actionable Recommendations
+## 📊 Dataset Information
+- Dataset: Superstore  
+- Source: Kaggle  
+- Rows: 9,994  
+- Columns: 21  
+- Format: CSV  
 
-1. **Penerapan Batas Maksimal Diskon (*Discount Capping*):** Mengunci sistem penjualan agar diskon untuk sub-kategori *Machines* tidak melebihi angka 20% dan menghentikan total promo diskon di atas 40%.
-2. **Audit Khusus untuk State Ohio:** Mengevaluasi kebijakan *pricing* atau kontrak dengan pelanggan besar di Ohio. Mengubah strategi promo dari "potongan harga langsung" menjadi penawaran nilai tambah (*value-added*) seperti perpanjangan garansi atau paket perawatan *hardware*.
-3. **Restrukturisasi Katalog Produk Sensitif:** Melakukan peninjauan kembali terhadap produk dengan sensitivitas diskon tinggi (seperti *Cubify CubeX*, *Cisco*, *Epson*). Jika biaya modal (*unit cost*) terlalu tinggi, pertimbangkan untuk membatasi kuota pemesanan produk tersebut.
+---
+
+## 🧹 Data Preparation Process
+
+### Data Cleaning
+- Corrected data types:
+  - `Order Date` → datetime  
+  - `Ship Date` → datetime  
+- Renamed columns (removed spaces for better querying)
+
+### Data Validation
+- No missing values  
+- No duplicate records  
+- Outliers retained (represent real business transactions)
+
+### Statistical Findings
+- `Sales`: highly right-skewed  
+- `Quantity`: mostly between 2–3  
+- `Discount`: mostly between 0–20%  
+- `Profit`: includes negative values (loss transactions)
+
+### Feature Engineering
+- `unit_price` → price before discount  
+- `profit_margin` → profit-to-sales ratio  
+
+---
+
+## 📈 Key Insights
+
+### 1. High Sales ≠ High Profit (Machines Sub-Category)
+The **Machines** sub-category shows strong sales but extremely low profit:
+
+- Sales: ~$189K (112 orders)  
+- Profit: ~$3.38K  
+
+Compared to Copiers:
+- Lower sales (~$149K)  
+- Much higher profit (~$55K)  
+
+➡️ Problem lies in **margin, not volume**
+
+---
+
+### 2. Massive Loss Contribution
+- 47.34% of Machine transactions are unprofitable  
+- Total loss: ~$30,118  
+
+➡️ Loss transactions significantly erode total profit
+
+---
+
+### 3. Strong Negative Impact of Discounts
+There is a clear **negative relationship** between discount and profit margin:
+
+- Higher discount → lower margin  
+- Most losses occur at **40%–70% discount levels**
+
+#### Example Case
+- Normal price: $20,993  
+- Discount: 70%  
+- Final sales: $6,299  
+- Loss: $9,239  
+- Profit margin: -147%  
+
+➡️ Aggressive discounting destroys profitability
+
+---
+
+### 4. Regional Loss Concentration (Ohio)
+- Largest loss contributor: **Ohio**
+  - Total loss: ~$11,770  
+  - 8 customers  
+  - High AOV (~$1,200)
+
+➡️ Indicates pricing or contract issues in this region
+
+---
+
+### 5. Category-Level Performance Imbalance
+- Office Supplies → highest order volume  
+- Technology → highest profit  
+- Furniture → very low profit  
+
+➡️ Not all categories contribute equally to profitability
+
+---
+
+## 🧠 Conclusion
+The Machines sub-category is a clear example of a **growth trap**, where high sales volume does not translate into profitability.
+
+The main issue is **uncontrolled discounting**, leading to significant cumulative losses and margin erosion.
+
+---
+
+## 💡 Recommendations
+
+### 1. Implement Discount Cap
+- Limit discounts to **maximum 40%**
+- Prevent margin from dropping into negative territory  
+
+---
+
+### 2. Evaluate Ohio Market Strategy
+- Audit pricing and contracts for key customers  
+- Replace discount strategy with:
+  - Extended warranty  
+  - Service bundles  
+
+---
+
+### 3. Review High-Risk Products
+- Evaluate products with high sensitivity to discount  
+- Consider:
+  - Increasing base price  
+  - Limiting sales volume  
+  - Removing unprofitable items  
+
+---
+
+## 🚀 Final Note
+This analysis highlights that **revenue growth alone is not enough**—sustainable business performance depends on maintaining **healthy profit margins through controlled pricing strategies**.
